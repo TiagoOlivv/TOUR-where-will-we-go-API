@@ -1,5 +1,5 @@
 {
-	"name": "TUR-where-will-we-go-API",
+	"name": "TOUR-where-will-we-go-API",
 	"version": "1.0.0",
 	"main": "index.js",
 	"repository": "https://github.com/TiagoOlivv/TUR-where-will-we-go-API.git",
@@ -12,7 +12,8 @@
 		"axios": "^0.19.1",
 		"cors": "^2.8.5",
 		"express": "^4.17.1",
-		"mongoose": "^5.8.7"
+		"mongoose": "^5.8.7",
+		"socket.io": "^2.3.0"
 	},
 	"devDependencies": {
 		"nodemon": "^2.0.2"

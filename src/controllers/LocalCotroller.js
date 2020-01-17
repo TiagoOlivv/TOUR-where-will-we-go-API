@@ -2,6 +2,7 @@ const axios = require("axios");
 
 const Local = require("../models/Local");
 const parseStringAsArray = require("../utils/parseStringAsArray");
+const { findConnections, sendMessage } = require("../websocket");
 
 module.exports = {
 	async index(req, res) {
@@ -50,6 +51,13 @@ module.exports = {
 				phone,
 				location
 			});
+
+			const sendSocketMessageTo = findConnections(
+				{ latitude, longitude },
+				specialtiesArray
+			);
+
+			sendMessage(sendSocketMessageTo, "new-local", local);
 		}
 
 		return res.json(local);

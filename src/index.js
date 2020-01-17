@@ -1,10 +1,15 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
+const http = require("http");
 
 const routes = require("./routes");
+const { setupWebsocket } = require("./websocket");
 
 const app = express();
+const server = http.Server(app);
+
+setupWebsocket(server);
 
 mongoose.connect(
 	"mongodb+srv://user:pass@cluster0-tesgy.mongodb.net/week10?retryWrites=true&w=majority",
@@ -15,8 +20,4 @@ app.use(cors());
 app.use(express.json());
 app.use(routes);
 
-// Query Params: request.query (filtros, ordenação, paginação)
-// Route Params: request.params (identificar um recurso na alteração ou remoção)
-// Body: request.body (dados para criação ou alteração de um registro)
-
-app.listen(3333);
+server.listen(3333);
