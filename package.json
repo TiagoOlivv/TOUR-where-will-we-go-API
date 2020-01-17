@@ -2,7 +2,7 @@
 	"name": "TOUR-where-will-we-go-API",
 	"version": "1.0.0",
 	"main": "index.js",
-	"repository": "https://github.com/TiagoOlivv/TUR-where-will-we-go-API.git",
+	"repository": "https://github.com/TiagoOlivv/TOUR-where-will-we-go-API.git",
 	"author": "tiagoolivv <suubmundo@gmail.com>",
 	"license": "MIT",
 	"scripts": {
