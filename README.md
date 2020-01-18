@@ -24,3 +24,5 @@ O pessoal da He4rt Developers e da Rocketseat deram aquela mão quando as coisas
 Entrem na [comunidade da He4rt Developers!](https://discord.gg/8mA4CM2) e [na comunidade da Rocketseat :rocket:](https://discordapp.com/invite/gCRAFhc)
 
 ---
+
+by João Carli :wave:
