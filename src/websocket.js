@@ -1,5 +1,4 @@
 const socketio = require("socket.io");
-
 const parseStringAsArray = require("./utils/parseStringAsArray");
 const calculateDistance = require("./utils/calculateDistance");
 

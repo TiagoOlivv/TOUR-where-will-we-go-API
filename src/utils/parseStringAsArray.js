@@ -1,4 +1,4 @@
 module.exports = arrayAsString => {
 	String(arrayAsString);
-	return arrayAsString.split(",").map(local => local.toLowerCase().trim());
+	return arrayAsString.split(",").map(local => local.trim());
 };
