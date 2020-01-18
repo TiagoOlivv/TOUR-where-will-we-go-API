@@ -7,6 +7,8 @@ const routes = Router();
 
 routes.get("/locals", LocalController.index);
 routes.post("/locals", LocalController.store);
+routes.delete("/locals/:_id/remove", LocalController.destroy);
+routes.put("/locals/:_id/update", LocalController.update);
 
 routes.get("/search", SearchCotroller.index);
 

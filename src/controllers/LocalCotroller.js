@@ -1,7 +1,6 @@
-const axios = require("axios");
-
 const Local = require("../models/Local");
 const parseStringAsArray = require("../utils/parseStringAsArray");
+const instagramData = require("../utils/instagramData");
 const { findConnections, sendMessage } = require("../websocket");
 
 module.exports = {
@@ -24,15 +23,9 @@ module.exports = {
 		let local = await Local.findOne({ instagram_username });
 
 		if (!local) {
-			const response = await axios.get(
-				`https://www.instagram.com/${instagram_username}/?__a=1`
-			);
+			const response = await instagramData(instagram_username);
 
-			const {
-				full_name,
-				biography,
-				profile_pic_url_hd
-			} = response.data.graphql.user;
+			const { full_name, biography, profile_pic_url_hd } = response;
 
 			const specialtiesArray = parseStringAsArray(specialties);
 
@@ -59,6 +52,52 @@ module.exports = {
 
 			sendMessage(sendSocketMessageTo, "new-local", local);
 		}
+
+		return res.json(local);
+	},
+
+	async destroy(req, res) {
+		const { _id } = req.params;
+
+		await Local.findByIdAndDelete({ _id: _id });
+
+		return res.json({ message: "usuario deletado" });
+	},
+
+	async update(req, res) {
+		const { _id } = req.params;
+
+		const {
+			instagram_username,
+			acting,
+			specialties,
+			phone,
+			latitude,
+			longitude
+		} = req.body;
+
+		const { biography, profile_pic_url_hd } = await instagramData(
+			instagram_username
+		);
+		const location = {
+			type: "Point",
+			coordinates: [longitude, latitude]
+		};
+
+		const local = await Local.findByIdAndUpdate(
+			{ _id },
+			{
+				acting,
+				phone,
+				biography,
+				location,
+				avatar_url: profile_pic_url_hd,
+				specialties: [parseStringAsArray(specialties)]
+			},
+			{
+				new: true
+			}
+		);
 
 		return res.json(local);
 	}
